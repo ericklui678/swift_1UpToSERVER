@@ -88,20 +88,21 @@ app.get('/groups/members/new', function(req, res){
 
 // Create group members
 app.post('/members/:name', function(req, res){
-  Group.findOne({name: req.params.name}, function(err, group){
-    User.find({email: req.body.email}, function(err, user){
-      if (user.length > 0) {
-        console.log("inside if");
-        group.members.push(user[0])
-      } else {
-        console.log("inside else");
-        var user = new User(req.body);
-        group.members.push(user)
-        user.save(function(err){})
-      }
-      group.save(function(err){if(err) {console.log(err);}})
-    })
-  })
+  print(req.body)
+  // Group.findOne({name: req.params.name}, function(err, group){
+  //   User.find({email: req.body.email}, function(err, user){
+  //     if (user.length > 0) {
+  //       console.log("inside if");
+  //       group.members.push(user[0])
+  //     } else {
+  //       console.log("inside else");
+  //       var user = new User(req.body);
+  //       group.members.push(user)
+  //       user.save(function(err){})
+  //     }
+  //     group.save(function(err){if(err) {console.log(err);}})
+  //   })
+  // })
   res.redirect('/groups')
 })
 
