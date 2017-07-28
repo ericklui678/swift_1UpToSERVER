@@ -62,9 +62,10 @@ app.get('/groups/new', function(req, res){
 // Create new group
 app.post('/groups/create/:name', function(req, res){
   Group.find({name: req.params.name}, function(err, data){
+    console.log("DATA RECEIVED:", data)
     console.log("GROUP NAME:", req.params.name)
     if(err) {console.log(err);}
-    if (data.length == 0){
+    if (data == undefined){
       Group.create({name: req.params.name}, function(err, data){
         if(err) {console.log(err);}
       })
