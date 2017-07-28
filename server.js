@@ -97,12 +97,8 @@ app.post('/members/:name', function(req, res){
   Group.findOne({name: req.params.name}, function(err, group){
     console.log("DATA", group);
     for (var i = 0; i < req.body["member"].length; i++){
-      User.find({name: req.body.member.name}, function(err, user) {
-        if (user.length == 0) {
-          group.members.push(req.body["member"][i]._id)
-          console.log("added", req.body["member"][i])
-        }
-      })
+      group.members.push(req.body["member"][i]._id)
+      console.log("added", req.body["member"][i])
     }
     console.log("MEMBERS ARRAY", group.members)
     group.save(function(err){if(err) {console.log(err);}})
