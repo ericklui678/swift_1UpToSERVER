@@ -91,6 +91,7 @@ app.post('/members/:name', function(req, res){
   console.log("REQ NAME", req.params.name)
   console.log("REQ BODY", req.body)
   Group.find({name: req.params.name}, function(err, group){
+    console.log("DATA", data);
     for (var i = 0; i < req.body["members"].length; i++){
       group.members.push(req.body["members"][i])
       console.log("added", req.body["members"][i])
