@@ -65,7 +65,7 @@ app.post('/groups/create/:name', function(req, res){
     console.log("DATA RECEIVED:", data)
     console.log("GROUP NAME RECEIVED:", req.params.name)
     if(err) {console.log(err);}
-    if (data == undefined){
+    if (data.length == 0){
       var group = new Group()
       group.name = req.params.name
       console.log("GROUP NAME SET", group.name)
