@@ -90,13 +90,13 @@ app.get('/groups/members/new', function(req, res){
 app.post('/members/:name', function(req, res){
   console.log("REQ NAME", req.params.name)
   console.log("REQ BODY", req.body)
-  Group.find({name: req.params.name}, function(err, group){
+  Group.findOne({name: req.params.name}, function(err, group){
     console.log("DATA", group);
-    for (var i = 0; i < req.body["members"].length; i++){
-      group[0].members.push(req.body["members"][i]._id)
-      console.log("added", req.body["members"][i])
+    for (var i = 0; i < req.body["member"].length; i++){
+      group.members.push(req.body["member"][i]._id)
+      console.log("added", req.body["member"][i])
     }
-    group.save(function(err){if(err) {console.log(err);}})
+    // group.save(function(err){if(err) {console.log(err);}})
   })
   res.redirect('/groups');
   // res.render('display', {data: req.body})
