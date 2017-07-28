@@ -60,11 +60,12 @@ app.get('/groups/new', function(req, res){
 })
 
 // Create new group
-app.post('/groups/create', function(req, res){
-  Group.find({name: req.body.name}, function(err, data){
+app.post('/groups/create/:name', function(req, res){
+  Group.find({name: req.params.name}, function(err, data){
+    console.log("GROUP NAME:", req.params.name)
     if(err) {console.log(err);}
     if (data.length == 0){
-      Group.create(req.body, function(err, data){
+      Group.create({name: req.params.name}, function(err, data){
         if(err) {console.log(err);}
       })
     }
@@ -100,22 +101,6 @@ app.post('/members/:name', function(req, res){
     group.save(function(err){if(err) {console.log(err);}})
   })
   res.redirect('/groups');
-  // res.render('display', {data: req.body})
-  // Group.findOne({name: req.params.name}, function(err, group){
-  //   User.find({email: req.body.email}, function(err, user){
-  //     if (user.length > 0) {
-  //       console.log("inside if");
-  //       group.members.push(user[0])
-  //     } else {
-  //       console.log("inside else");
-  //       var user = new User(req.body);
-  //       group.members.push(user)
-  //       user.save(function(err){})
-  //     }
-  //     group.save(function(err){if(err) {console.log(err);}})
-  //   })
-  // })
-  // res.redirect('/groups')
 })
 
 app.listen(port, function(){
