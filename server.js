@@ -39,9 +39,9 @@ app.get('/groups', function(req, res){
 })
 
 // Form for creating users
-// app.get('/users/new', function(req, res){
-//   res.render('users')
-// })
+app.get('/users/new', function(req, res){
+  res.render('users')
+})
 // Create new user if not exist
 app.post('/users/create', function(req, res){
   User.find({email: req.body.email}, function(err, users){
