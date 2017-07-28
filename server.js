@@ -96,7 +96,8 @@ app.post('/members/:name', function(req, res){
       group.members.push(req.body["member"][i]._id)
       console.log("added", req.body["member"][i])
     }
-    // group.save(function(err){if(err) {console.log(err);}})
+    console.log("MEMBERS ARRAY", group.members)
+    group.save(function(err){if(err) {console.log(err);}})
   })
   res.redirect('/groups');
   // res.render('display', {data: req.body})
