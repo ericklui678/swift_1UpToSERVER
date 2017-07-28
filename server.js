@@ -88,7 +88,8 @@ app.get('/groups/members/new', function(req, res){
 
 // Create group members
 app.post('/members/:name', function(req, res){
-  res.render('display', {data: req.body})
+  console.log(req.body)
+  // res.render('display', {data: req.body})
   // Group.findOne({name: req.params.name}, function(err, group){
   //   User.find({email: req.body.email}, function(err, user){
   //     if (user.length > 0) {
