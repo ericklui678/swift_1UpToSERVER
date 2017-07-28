@@ -93,6 +93,7 @@ app.post('/members/:name', function(req, res){
   Group.find({name: req.params.name}, function(err, group){
     for (var i = 0; i < req.body["members"].length; i++){
       group.members.push(req.body["members"][i])
+      console.log("added", req.body["members"][i])
     }
     group.save(function(err){if(err) {console.log(err);}})
   })
